@@ -12,5 +12,10 @@ jobs:
 
     - name: hello-action
       uses: ./.github/actions/hello-world
+      id: jokes
+
+    - name: create-issue
+      uses: ./.github/actions/issue-maker
       with:
-        first-greeting: "Learning Lab User"
+        repo-token: ${{secrets.GITHUB_TOKEN}}
+        joke: ${{steps.jokes.outputs.joke-output}}
